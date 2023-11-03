@@ -6,7 +6,8 @@
     
 </head>
 <body>
-    <form action="addusers.php">
+    
+    <form action="addusers.php" method = "post">
         First name:<input type="text" name="forename"><br>
         Last name:<input type="text" name="surname"><br>
         Password:<input type="password" name="passwd"><br>
@@ -24,7 +25,18 @@
         <input type="radio" name="role" value="Admin"> Admin<br>
         <input type="submit" value="Add User">
       </form>
-      
-       
 </body>
 </html>
+<?php
+ include_once('connection.php');
+ $stmt = $conn->prepare("SELECT * FROM TblUsers");
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+{
+echo($row["Forename"].' '.$row["Surname"].' '.$row["House"]."<br>");
+
+}
+
+
+
+       
